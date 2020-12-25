@@ -52,12 +52,12 @@ const (
 // patched to support unique build environments that impose restrictions
 // on the dependencies of generated source code.
 var (
-	protoPackage         goImportPath = protogen.GoImportPath("github.com/ikaiguang/protoc-gen-go/proto")
-	protoifacePackage    goImportPath = protogen.GoImportPath("github.com/ikaiguang/protoc-gen-go/runtime/protoiface")
-	protoimplPackage     goImportPath = protogen.GoImportPath("github.com/ikaiguang/protoc-gen-go/runtime/protoimpl")
-	protojsonPackage     goImportPath = protogen.GoImportPath("github.com/ikaiguang/protoc-gen-go/encoding/protojson")
-	protoreflectPackage  goImportPath = protogen.GoImportPath("github.com/ikaiguang/protoc-gen-go/reflect/protoreflect")
-	protoregistryPackage goImportPath = protogen.GoImportPath("github.com/ikaiguang/protoc-gen-go/reflect/protoregistry")
+	protoPackage         goImportPath = protogen.GoImportPath("google.golang.org/protobuf/proto")
+	protoifacePackage    goImportPath = protogen.GoImportPath("google.golang.org/protobuf/runtime/protoiface")
+	protoimplPackage     goImportPath = protogen.GoImportPath("google.golang.org/protobuf/runtime/protoimpl")
+	protojsonPackage     goImportPath = protogen.GoImportPath("google.golang.org/protobuf/encoding/protojson")
+	protoreflectPackage  goImportPath = protogen.GoImportPath("google.golang.org/protobuf/reflect/protoreflect")
+	protoregistryPackage goImportPath = protogen.GoImportPath("google.golang.org/protobuf/reflect/protoregistry")
 	protoV1Package       goImportPath = protogen.GoImportPath("github.com/golang/protobuf/proto")
 )
 
@@ -410,7 +410,6 @@ func genMessageField(g *protogen.GeneratedFile, f *fileInfo, m *messageInfo, fie
 	tags := structTags{
 		{"protobuf", fieldProtobufTagValue(field)},
 		{"json", fieldJSONTagValue(field)},
-		{"form", string(field.Desc.Name())},
 	}
 	if field.Desc.IsMap() {
 		key := field.Message.Fields[0]

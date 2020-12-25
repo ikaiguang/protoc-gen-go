@@ -23,10 +23,18 @@ github.com/golang/protobuf/internal/gengogrpc
 
 基于 google.golang.org/protobuf@v1.25.0
 
-## 替换引入包
+## 编辑修改
 
-google.golang.org/protobuf
-github.com/ikaiguang/protoc-gen-go
+复制 google.golang.org/protobuf@v1.25.0 -> github.com/ikaiguang/protoc-gen-go
+
+替换引入包
+google.golang.org/protobuf -> github.com/ikaiguang/protoc-gen-go
+
+重新复制 google.golang.org/protobuf/cmd/protoc-gen-go/main.go -> github.com/ikaiguang/protoc-gen-go/cmd/protoc-gen-go/main.go
+重新复制 google.golang.org/protobuf/cmd/protoc-gen-go/internal_gengo -> github.com/ikaiguang/protoc-gen-go/cmd/protoc-gen-go/internal_gengo
+
+修正 ./cmd/protoc-gen-go-tkform
+添加 tag form:
 
 ## 格式化代码 & 尝试编译
 
