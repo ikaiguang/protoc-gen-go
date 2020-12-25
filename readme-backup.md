@@ -3,6 +3,11 @@
 tkform google.golang.org/protobuf@v1.25.0
 tkgrpc github.com/golang/protobuf@v1.4.3
 
+## 安装
+
+go get github.com\ikaiguang\protoc-gen-go\cmd\protoc-gen-go-tkform
+go get github.com\ikaiguang\protoc-gen-go\cmd\protoc-gen-go-tkgrpc
+
 ## protoc-gen-go-tkgrpc
 
 当前版本：github.com/golang/protobuf@v1.4.3
