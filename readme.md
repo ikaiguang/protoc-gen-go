@@ -1,12 +1,12 @@
 # protoc-gen-go 扩展
 
-tkform google.golang.org/protobuf@v1.25.0
-tkgrpc github.com/golang/protobuf@v1.4.3
+- tkform google.golang.org/protobuf@v1.25.0
+- tkgrpc github.com/golang/protobuf@v1.4.3
 
 ## 安装
 
-go get github.com\ikaiguang\protoc-gen-go\cmd\protoc-gen-go-tkform
-go get github.com\ikaiguang\protoc-gen-go\cmd\protoc-gen-go-tkgrpc
+- go get github.com\ikaiguang\protoc-gen-go\cmd\protoc-gen-go-tkform
+- go get github.com\ikaiguang\protoc-gen-go\cmd\protoc-gen-go-tkgrpc
 
 ## protoc-gen-go-tkgrpc
 
@@ -16,8 +16,8 @@ github.com/ikaiguang/srv_toolkit/cmd/protoc-gen-go-tkgrpc/gengogrpc
 
 gengogrpc 源码复制于
 
-github.com/golang/protobuf@v1.4.3
-github.com/golang/protobuf/internal/gengogrpc 
+- github.com/golang/protobuf@v1.4.3
+- github.com/golang/protobuf/internal/gengogrpc 
 
 ## protoc-gen-go-tkform
 
@@ -27,16 +27,15 @@ github.com/golang/protobuf/internal/gengogrpc
 
 复制 google.golang.org/protobuf@v1.25.0 -> github.com/ikaiguang/protoc-gen-go
 
-替换引入包
-google.golang.org/protobuf -> github.com/ikaiguang/protoc-gen-go
+替换引入包 google.golang.org/protobuf -> github.com/ikaiguang/protoc-gen-go
 
-重新复制 google.golang.org/protobuf/cmd/protoc-gen-go/main.go -> github.com/ikaiguang/protoc-gen-go/cmd/protoc-gen-go/main.go
-重新复制 google.golang.org/protobuf/cmd/protoc-gen-go/internal_gengo -> github.com/ikaiguang/protoc-gen-go/cmd/protoc-gen-go/internal_gengo
+- 重新复制 google.golang.org/protobuf/cmd/protoc-gen-go/main.go -> github.com/ikaiguang/protoc-gen-go/cmd/protoc-gen-go/main.go
+- 重新复制 google.golang.org/protobuf/cmd/protoc-gen-go/internal_gengo -> github.com/ikaiguang/protoc-gen-go/cmd/protoc-gen-go/internal_gengo
 
-修正 ./cmd/protoc-gen-go-tkform
-添加 tag form:
+- 修正 ./cmd/protoc-gen-go-tkform
+- 添加 {"form", string(field.Desc.Name())}
 
 ## 格式化代码 & 尝试编译
 
-gofmt -w .
-go build ./cmd/protoc-gen-go-tkform/main.go
+- gofmt -w .
+- go build ./cmd/protoc-gen-go-tkform/main.go
