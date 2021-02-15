@@ -4,7 +4,7 @@ import (
 	"flag"
 	"github.com/ikaiguang/protoc-gen-go/cmd/protoc-gen-go-tkgrpc/gengogrpc"
 
-	gengo "github.com/ikaiguang/protoc-gen-go/cmd/protoc-gen-go/internal_gengo"
+	gengo "github.com/ikaiguang/protoc-gen-go/cmd/protoc-gen-go-tkform/internal_gengo"
 	"github.com/ikaiguang/protoc-gen-go/compiler/protogen"
 )
 
