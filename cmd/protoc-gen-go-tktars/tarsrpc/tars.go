@@ -9,8 +9,8 @@ import (
 // Paths for packages used by code generated in this file,
 // relative to the import_prefix of the generator.Generator.
 const (
-	fmtPath        = protogen.GoImportPath("fmt")
 	contextPath    = protogen.GoImportPath("context")
+	fmtPath        = protogen.GoImportPath("fmt")
 	modelPkgPath   = protogen.GoImportPath("github.com/TarsCloud/TarsGo/tars/model")
 	requestPkgPath = protogen.GoImportPath("github.com/TarsCloud/TarsGo/tars/protocol/res/requestf")
 	tarsPkgPath    = protogen.GoImportPath("github.com/TarsCloud/TarsGo/tars")
