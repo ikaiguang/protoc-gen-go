@@ -1,12 +1,16 @@
 # protoc-gen-go 扩展
 
+自定义工具 protobuf-form protobuf-grpc protobuf-tars
+
 - tkform google.golang.org/protobuf@v1.25.0
 - tkgrpc github.com/golang/protobuf@v1.4.3
+- tktars github.com/TarsCloud/TarsGo@v1.1.6
 
 ## 安装
 
 - go get github.com\ikaiguang\protoc-gen-go\cmd\protoc-gen-go-tkform
 - go get github.com\ikaiguang\protoc-gen-go\cmd\protoc-gen-go-tkgrpc
+- go get github.com\ikaiguang\protoc-gen-go\cmd\protoc-gen-go-tktars
 
 ## protoc-gen-go-tkgrpc
 
