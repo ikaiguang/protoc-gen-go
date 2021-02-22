@@ -11,12 +11,12 @@ import (
 const (
 	fmtPath        = protogen.GoImportPath("fmt")
 	contextPath    = protogen.GoImportPath("context")
-	protoPath      = protogen.GoImportPath("github.com/golang/protobuf/proto")
 	modelPkgPath   = protogen.GoImportPath("github.com/TarsCloud/TarsGo/tars/model")
 	requestPkgPath = protogen.GoImportPath("github.com/TarsCloud/TarsGo/tars/protocol/res/requestf")
 	tarsPkgPath    = protogen.GoImportPath("github.com/TarsCloud/TarsGo/tars")
 	toolsPath      = protogen.GoImportPath("github.com/TarsCloud/TarsGo/tars/util/tools")
 	currentPath    = protogen.GoImportPath("github.com/TarsCloud/TarsGo/tars/util/current")
+	protoPath      = protogen.GoImportPath("google.golang.org/protobuf/proto")
 )
 
 // upperFirstLatter make the fisrt charater of given string  upper class
