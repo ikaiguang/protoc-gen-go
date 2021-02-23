@@ -121,7 +121,7 @@ func generateService(g *protogen.GeneratedFile, file *protogen.File, service *pr
 	//generate the interface
 	g.P(fmt.Sprintf("type imp%s interface{", serviceName))
 	for _, method := range service.Methods {
-		g.P(fmt.Sprintf("%s (input %s) (output %s, err error)",
+		g.P(fmt.Sprintf("%s (input *%s) (output *%s, err error)",
 			upperFirstLatter(method.GoName), g.QualifiedGoIdent(method.Input.GoIdent), g.QualifiedGoIdent(method.Output.GoIdent)))
 	}
 	g.P("}")
@@ -130,7 +130,7 @@ func generateService(g *protogen.GeneratedFile, file *protogen.File, service *pr
 	//generate the context interface
 	g.P(fmt.Sprintf("type imp%sWithContext interface{", serviceName))
 	for _, method := range service.Methods {
-		g.P(fmt.Sprintf("%s (ctx context.Context, input %s) (output %s, err error)",
+		g.P(fmt.Sprintf("%s (ctx context.Context, input *%s) (output *%s, err error)",
 			upperFirstLatter(method.GoName), g.QualifiedGoIdent(method.Input.GoIdent), g.QualifiedGoIdent(method.Output.GoIdent)))
 	}
 	g.P("}")
@@ -151,16 +151,16 @@ func generateClientCode(g *protogen.GeneratedFile, service *protogen.Service, me
 	inType := g.QualifiedGoIdent(method.Input.GoIdent)
 	outType := g.QualifiedGoIdent(method.Output.GoIdent)
 	g.P(fmt.Sprintf(`// %s is client rpc method as defined
-		func (obj *%s) %s(input %s, _opt ...map[string]string)(output %s, err error){
+		func (obj *%s) %s(input *%s, _opt ...map[string]string)(output *%s, err error){
 			ctx := context.Background()
 			return obj.%sWithContext(ctx, input, _opt...)
 		}
 	`, methodName, serviceName, methodName, inType, outType, methodName))
 
 	g.P(fmt.Sprintf(`// %sWithContext is client rpc method as defined
-		func (obj *%s) %sWithContext(ctx context.Context, input %s, _opt ...map[string]string)(output %s, err error){
+		func (obj *%s) %sWithContext(ctx context.Context, input *%s, _opt ...map[string]string)(output *%s, err error){
 			var inputMarshal []byte
-			inputMarshal, err = proto.Marshal(&input)
+			inputMarshal, err = proto.Marshal(input)
 			if err != nil {
 				return output, err
 			}
@@ -180,7 +180,8 @@ func generateClientCode(g *protogen.GeneratedFile, service *protogen.Service, me
 			if err != nil {
 				return output, err
 			}
-			if err = proto.Unmarshal(tools.Int8ToByte(resp.SBuffer), &output); err != nil{
+			output = &%s{}
+			if err = proto.Unmarshal(tools.Int8ToByte(resp.SBuffer), output); err != nil{
 				return output, err
 			}
 
@@ -208,7 +209,7 @@ func generateClientCode(g *protogen.GeneratedFile, service *protogen.Service, me
 
 			return output, nil
 		}
-	`, methodName, serviceName, methodName, inType, outType, method.GoName))
+	`, methodName, serviceName, methodName, inType, outType, method.GoName, outType))
 }
 
 // generateDispatch .
@@ -223,11 +224,11 @@ func generateDispatch(g *protogen.GeneratedFile, service *protogen.Service) {
 	`, serviceName))
 	for _, method := range service.Methods {
 		g.P(fmt.Sprintf(`case "%s":
-			inputDefine := %s{}
-			if err = proto.Unmarshal(input,&inputDefine); err != nil{
+			inputDefine := &%s{}
+			if err = proto.Unmarshal(input, inputDefine); err != nil{
 				return err
 			}
-			var res %s
+			var res = &%s{}
             if withContext == false {
 				imp := val.(imp%s)
 				res, err = imp.%s(inputDefine)
@@ -241,7 +242,7 @@ func generateDispatch(g *protogen.GeneratedFile, service *protogen.Service) {
 					return err
 				}
 			}
-			output , err = proto.Marshal(&res)
+			output , err = proto.Marshal(res)
 			if err != nil {
 				return err
 			}
