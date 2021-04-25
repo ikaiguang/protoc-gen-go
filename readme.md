@@ -8,9 +8,17 @@
 
 ## 安装
 
-- go get github.com\ikaiguang\protoc-gen-go\cmd\protoc-gen-go-tkform
-- go get github.com\ikaiguang\protoc-gen-go\cmd\protoc-gen-go-tkgrpc
-- go get github.com\ikaiguang\protoc-gen-go\cmd\protoc-gen-go-tktars
+- go get github.com/ikaiguang/protoc-gen-go/cmd/protoc-gen-go-tkform
+- go get github.com/ikaiguang/protoc-gen-go/cmd/protoc-gen-go-tkgrpc
+- go get github.com/ikaiguang/protoc-gen-go/cmd/protoc-gen-go-tktars
+
+## 使用示例
+
+```shell
+protoc -I. -I$GOPATH/src --go-tkform_out=. --go-tkform_opt=paths=source_relative ./*.proto
+protoc -I. -I$GOPATH/src --go-tkgrpc_out=. --go-tkgrpc_opt=paths=source_relative ./*.proto
+protoc -I. -I$GOPATH/src --go-tktars_out=. --go-tktars_out=paths=source_relative ./*.proto
+```
 
 ## protoc-gen-go-tkgrpc
 
